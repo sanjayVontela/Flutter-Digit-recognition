@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hello_mnist/pages/upload_page.dart';
+import 'package:hello_mnist/pages/drawing_page.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -28,7 +29,7 @@ class _HomeState extends State<Home> {
   int current_index =0;
   List tabs = const [
     UploadImage(),
-    Center(child: Text("Drawing Page"))
+    DrawPage()
   ];
   @override
   Widget build(BuildContext context) {

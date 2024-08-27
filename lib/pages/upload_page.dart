@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:hello_mnist/dl_model/classifier.dart';
 
 class UploadImage extends StatefulWidget {
   const UploadImage({super.key});
@@ -11,6 +12,7 @@ class UploadImage extends StatefulWidget {
 
 class _UploadImageState extends State<UploadImage> {
   final ImagePicker picker = ImagePicker();
+  Classifier classifier = Classifier();
   var image;
   var digit = -1;
   @override
@@ -24,7 +26,8 @@ class _UploadImageState extends State<UploadImage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           image = await picker.pickImage(source: ImageSource.gallery);
-          digit = 1;
+          digit = await classifier.classifyImage(image);
+          // digit = 1;
           print(image.path);
           setState(() {});
         },
